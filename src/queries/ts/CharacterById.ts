@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 const CharacterByIdQuery = gql`
-  query CharacterById($filterValue: Int!) {
+  query CharacterById($filterValue: ID!) {
     character(id: $filterValue) {
       id
       name
