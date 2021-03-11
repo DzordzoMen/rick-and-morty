@@ -7,6 +7,10 @@
       :currentPage="currentPage"
       :updatePagination="updateCurrentPage"
     />
+
+    <div class="no-search-result" v-if="error">
+      No search results
+    </div>
   </container>
 </template>
 
@@ -47,10 +51,21 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
           filterValue: this.filterValue as string | number
         };
       },
+      update: () => ({ characters: [] as Character[] }),
+      error() {
+        this.error = true;
+        this.dataInfo = {
+          count: 0,
+          pages: 0
+        };
+        this.charactersInfo = [];
+      },
       result({ data, loading }) {
         const { filterType } = this;
 
-        if (!loading) {
+        if (!loading && !!data) {
+          this.error = false;
+
           switch (filterType) {
             case "Name":
               this.dataInfo = data.characters.info;
@@ -59,9 +74,7 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
             case "Identifier":
               this.dataInfo = {
                 count: 0,
-                pages: 0,
-                next: 0,
-                prev: 0
+                pages: 0
               };
               this.charactersInfo = [data.character];
               break;
@@ -80,6 +93,7 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
   }
 })
 export default class CharactersView extends Vue {
+  error = false;
   currentPage = 1;
 
   get filterType(): string {
@@ -92,9 +106,7 @@ export default class CharactersView extends Vue {
 
   dataInfo: PagedResult = {
     count: 0,
-    pages: 0,
-    next: 0, // TOOD MAKE NULLABLE
-    prev: 0 // TOOD MAKE NULLABLE
+    pages: 0
   };
 
   charactersInfo: Character[] = [];
@@ -114,3 +126,16 @@ export default class CharactersView extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+@import "../styles/_mixins.scss";
+
+.no-search-result {
+  @include textStyle(500, 24px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  color: $secondary;
+}
+</style>

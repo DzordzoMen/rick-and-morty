@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar />
-    <div class="navigation-area">
+    <nav class="navigation-area" aria-label="Secondary">
       <router-link to="/" custom v-slot="{ navigate }">
         <span
           @click="navigate"
@@ -24,7 +24,7 @@
           Favorites
         </span>
       </router-link>
-    </div>
+    </nav>
     <router-view />
   </div>
 </template>
@@ -46,6 +46,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+@import "./styles/_mixins.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -63,18 +65,34 @@ input:focus {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@media only screen and (min-device-width: 320px) and (max-device-width: 769px) {
+  .navigation-area {
+    padding: 24px;
+  }
+}
+
+@media only screen and (min-device-width: 770px) and (max-device-width: 1024px) {
+  .navigation-area {
+    padding: 24px 140px;
+  }
+}
+@media screen and (min-device-width: 1200px) {
+  .navigation-area {
+    padding: 24px 140px;
+  }
+}
+
 .navigation-area {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 48px;
-  padding: 24px 0;
-  max-width: 1185px;
+  width: 100%;
   margin: auto;
 
   .navigation-button {
+    @include textStyle(500, 24px);
     color: $primary;
-    font-weight: 500;
     cursor: pointer;
 
     &__active {

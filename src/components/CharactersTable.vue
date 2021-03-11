@@ -134,14 +134,17 @@ table {
   font-size: 16px;
   color: $secondary;
   border-collapse: collapse;
+  text-align: left;
 
   thead {
     background: rgba(229, 234, 244, 0.25);
 
     tr {
       height: 54px;
+      white-space: nowrap;
       th {
         @include textStyle(500, 22px);
+        padding: 0 8px;
       }
     }
   }
@@ -154,7 +157,7 @@ table {
 
     td {
       @include textStyle(400, 22px);
-      text-align: left;
+      padding: 0 8px;
 
       .is-favorite {
         background: $primary;

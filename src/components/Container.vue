@@ -11,19 +11,27 @@ import { Vue, Component } from "vue-property-decorator";
 export default class Container extends Vue {}
 </script>
 
-<style>
-@media (min-width: 960px) {
+<style lang="scss">
+@media only screen and (min-device-width: 320px) and (max-device-width: 769px) {
   .container {
-    max-width: 900px;
+    padding: 0 12px;
   }
 }
-@media (min-width: 1264px) {
+
+@media only screen and (min-device-width: 770px) and (max-device-width: 1024px) {
   .container {
-    max-width: 1185px;
+    padding: 0 140px;
   }
 }
+@media screen and (min-device-width: 1200px) {
+  .container {
+    padding: 0 140px;
+  }
+}
+
 .container {
   margin: auto;
+  overflow: auto;
   width: 100%;
 }
 </style>

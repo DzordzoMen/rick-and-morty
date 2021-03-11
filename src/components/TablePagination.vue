@@ -223,8 +223,10 @@ export default class TablePagination extends Vue {
     color: $secondary;
     border: 1px solid $secondary;
     border-radius: 4px;
+    min-width: 48px;
     width: 48px;
     height: 48px;
+    min-height: 48px;
     transition: all 0.23s ease-in-out;
     cursor: pointer;
 

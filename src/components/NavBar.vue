@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav aria-label="Main">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
       class="logo"
@@ -41,20 +41,12 @@ import SearchBarSelect from "@/components/SearchBarSelect.vue";
   }
 })
 export default class NavBar extends Vue {
-  userInputValue = "";
+  inputValue = "";
   selected = "Name";
   availableFilterOptions: string[] = ["Name", "Identifier", "Episode"];
 
-  get inputValue(): string {
-    return this.$store.getters["FILTER_VALUE"];
-  }
-
-  set inputValue(newValue: string) {
-    this.userInputValue = newValue;
-  }
-
   search(): void {
-    const { userInputValue: newValue, selected: newType } = this;
+    const { inputValue: newValue, selected: newType } = this;
 
     this.$store.commit("CHANGE_FILTER_VALUE", newValue);
     this.$store.commit("CHANGE_FILTER_TYPE", newType);
@@ -65,12 +57,25 @@ export default class NavBar extends Vue {
 <style lang="scss" scoped>
 @media only screen and (min-device-width: 320px) and (max-device-width: 769px) {
   nav {
-    height: 220px;
+    height: 142px;
     gap: 8px;
+    padding: 8px 4px;
     justify-content: center;
 
     .logo {
       max-width: 200px !important;
+    }
+  }
+
+  .search-bar {
+    &__item {
+      &:nth-child(2) {
+        width: 35% !important;
+      }
+
+      &:last-child {
+        width: 40% !important;
+      }
     }
   }
 }
@@ -79,6 +84,7 @@ export default class NavBar extends Vue {
   nav {
     height: 134px;
     gap: 24px;
+    padding: 24px;
     justify-content: center;
 
     .logo {
@@ -90,10 +96,11 @@ export default class NavBar extends Vue {
   nav {
     height: 134px;
     gap: 64px;
+    padding: 38px 140px;
     justify-content: start;
 
     .logo {
-      max-width: 300px !important;
+      max-width: 240px !important;
     }
   }
 }
@@ -101,11 +108,9 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 1185px;
-  margin: auto;
+  width: 100%;
   min-height: 134px;
   max-height: 220px;
-  padding: 24px;
   font-size: 16px;
   z-index: 2;
   place-items: center;
@@ -115,7 +120,7 @@ nav {
   border-bottom: 1px solid $secondary;
 
   .logo {
-    max-width: 300px;
+    max-width: 240px;
   }
 
   .search-bar {
