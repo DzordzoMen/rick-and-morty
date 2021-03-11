@@ -8,7 +8,7 @@
           @keypress.enter="navigate"
           role="link"
           class="navigation-button"
-          :class="routeIsActive('Home') && 'navigation-button__active'"
+          :class="routeIsActive('Characters') && 'navigation-button__active'"
         >
           All Characters
         </span>

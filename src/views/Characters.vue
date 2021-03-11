@@ -1,31 +1,30 @@
 <template>
-  <div class="home">
+  <container>
     <characters-table
       :characters="charactersInfo || []"
-      :pagedResult="dataInfo || {}"
-    />
-    <table-pagination
-      v-if="dataInfo.pages > 1"
+      :headers="tableHeaders"
       :pagedResult="dataInfo || {}"
       :currentPage="currentPage"
-      @pageChanged="updateCurrentPage"
+      :updatePagination="updateCurrentPage"
     />
-  </div>
+  </container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import CharactersTable from "@/components/CharactersTable.vue";
-import TablePagination from "@/components/TablePagination.vue";
-import CharactersQuery from "@/queries/ts/Characters";
-import CharacterByIdQuery from "@/queries/ts/CharacterById";
-import CharactersByEpisodeQuery from "@/queries/ts/CharactersByEpisode";
 import { Character, PagedResult } from "@/typescript";
+
+import CharactersTable from "@/components/CharactersTable.vue";
+import Container from "@/components/Container.vue";
+
+import Characters from "@/queries/Characters.graphql";
+import CharacterById from "@/queries/CharacterById.graphql";
+import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
 
 @Component({
   components: {
     CharactersTable,
-    TablePagination
+    Container
   },
   apollo: {
     characters: {
@@ -33,13 +32,13 @@ import { Character, PagedResult } from "@/typescript";
         const { filterType } = this;
         switch (filterType) {
           case "Name":
-            return CharactersQuery;
+            return Characters;
           case "Identifier":
-            return CharacterByIdQuery;
+            return CharacterById;
           case "Episode":
-            return CharactersByEpisodeQuery;
+            return CharactersByEpisode;
           default:
-            return CharactersQuery;
+            return Characters;
         }
       },
       variables() {
@@ -80,7 +79,7 @@ import { Character, PagedResult } from "@/typescript";
     }
   }
 })
-export default class Home extends Vue {
+export default class CharactersView extends Vue {
   currentPage = 1;
 
   get filterType(): string {
@@ -99,6 +98,17 @@ export default class Home extends Vue {
   };
 
   charactersInfo: Character[] = [];
+
+  tableHeaders: string[] = [
+    "Photo",
+    "Character ID",
+    "Name",
+    "Gender",
+    "Species",
+    "Last Episode",
+    "Add to Favorites"
+  ];
+
   updateCurrentPage(newPage: number) {
     this.currentPage = newPage;
   }
