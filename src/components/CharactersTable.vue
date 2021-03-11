@@ -64,9 +64,10 @@
 </template>
 
 <script lang="ts">
+// utilities
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Character, PagedResult, Gender, Status, Episode } from "@/typescript";
-
+// components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
 import Pagination from "@/components/Pagination.vue";
 import Ribbon from "@/components/icons/Ribbon.vue";
@@ -79,11 +80,17 @@ import Ribbon from "@/components/icons/Ribbon.vue";
   }
 })
 export default class CharactersTable extends Vue {
+  //#region props
+
   @Prop({ required: true }) characters!: Character[];
   @Prop({ required: true }) headers!: string[];
   @Prop({ required: false }) pagedResult!: PagedResult;
   @Prop({ required: false }) currentPage!: number;
   @Prop({ required: false }) updatePagination!: Function;
+
+  //#endregion
+
+  //#region methods
 
   setGenderIcon({ gender }: { gender: Gender }): string {
     switch (gender) {
@@ -123,6 +130,8 @@ export default class CharactersTable extends Vue {
   isDead({ status }: Character): boolean {
     return status === Status.Dead;
   }
+
+  //#endregion
 }
 </script>
 
@@ -195,8 +204,8 @@ table {
   }
 
   .character-image {
-    width: 43px;
-    height: 68px;
+    width: 50px;
+    height: 75px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

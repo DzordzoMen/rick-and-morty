@@ -25,8 +25,9 @@
 </template>
 
 <script lang="ts">
+// utilities
 import { Component, Vue } from "vue-property-decorator";
-
+// components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
 import Logo from "@/components/icons/Logo.vue";
 import SelectTree from "@/components/SelectTree.vue";
@@ -39,9 +40,17 @@ import SelectTree from "@/components/SelectTree.vue";
   }
 })
 export default class NavBar extends Vue {
+  //#region data
+
   inputValue = "";
+
   selected = "Name";
+
   availableFilterOptions: string[] = ["Name", "Identifier", "Episode"];
+
+  //#endregion
+
+  //#region methods
 
   search(): void {
     const { inputValue: newValue, selected: newType } = this;
@@ -49,6 +58,8 @@ export default class NavBar extends Vue {
     this.$store.commit("CHANGE_FILTER_VALUE", newValue);
     this.$store.commit("CHANGE_FILTER_TYPE", newType);
   }
+
+  //#endregion
 }
 </script>
 

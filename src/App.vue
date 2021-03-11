@@ -30,18 +30,24 @@
 </template>
 
 <script lang="ts">
+// utilities
+import { Component, Vue } from "vue-property-decorator";
+// components
 import NavBar from "@/components/NavBar.vue";
 
-import { Component, Vue } from "vue-property-decorator";
 @Component({
   components: {
     NavBar
   }
 })
 export default class App extends Vue {
+  //#region methods
+
   routeIsActive(routeName: string): boolean {
     return this.$route.matched.some(({ name }) => name === routeName);
   }
+
+  //#endregion
 }
 </script>
 

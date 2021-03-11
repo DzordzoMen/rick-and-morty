@@ -15,12 +15,13 @@
 </template>
 
 <script lang="ts">
+// utilities
 import { Component, Vue } from "vue-property-decorator";
 import { Character, PagedResult } from "@/typescript";
-
+// components
 import CharactersTable from "@/components/CharactersTable.vue";
 import Container from "@/components/Container.vue";
-
+// queries
 import Characters from "@/queries/Characters.graphql";
 import CharacterById from "@/queries/CharacterById.graphql";
 import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
@@ -93,16 +94,11 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
   }
 })
 export default class CharactersView extends Vue {
+  //#region data
+
   error = false;
+
   currentPage = 1;
-
-  get filterType(): string {
-    return this.$store.getters["FILTER_TYPE"];
-  }
-
-  get filterValue(): string {
-    return this.$store.getters["FILTER_VALUE"];
-  }
 
   dataInfo: PagedResult = {
     count: 0,
@@ -121,9 +117,27 @@ export default class CharactersView extends Vue {
     "Add to Favorites"
   ];
 
+  //#endregion
+
+  //#region computed
+
+  get filterType(): string {
+    return this.$store.getters["FILTER_TYPE"];
+  }
+
+  get filterValue(): string {
+    return this.$store.getters["FILTER_VALUE"];
+  }
+
+  //#endregion
+
+  //#region methods
+
   updateCurrentPage(newPage: number) {
     this.currentPage = newPage;
   }
+
+  //#endregion
 }
 </script>
 

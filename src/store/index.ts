@@ -1,6 +1,8 @@
+// utilities
 import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
 import { RootState } from "./types";
+// modules
 import { favoriteCharacters } from "./FavoriteModule/index";
 import { filter } from "./FilterModule/index";
 

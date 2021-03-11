@@ -54,9 +54,10 @@
 </template>
 
 <script lang="ts">
+// utilities
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { PagedResult } from "@/typescript";
-
+// components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
 
 @Component({
@@ -65,9 +66,13 @@ import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
   }
 })
 export default class Pagination extends Vue {
+  //#region props
+
   @Prop({ required: true }) pagedResult!: PagedResult;
   @Prop({ required: true }) currentPage!: number;
   @Prop({ required: false, default: 3 }) pageRange!: number;
+
+  //#endregion
 
   //#region computed
 

@@ -1,5 +1,7 @@
+// utilities
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+// views
 import CharactersView from "../views/Characters.vue";
 import FavoritesView from "@/views/Favorites.vue";
 

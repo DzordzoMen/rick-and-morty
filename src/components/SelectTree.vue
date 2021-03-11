@@ -30,8 +30,9 @@
 </template>
 
 <script lang="ts">
+// utilities
 import { Component, Prop, Vue } from "vue-property-decorator";
-
+// components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
 
 @Component({
@@ -40,10 +41,20 @@ import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
   }
 })
 export default class SelectTree extends Vue {
+  //#region props
+
   @Prop({ required: true, default: [] }) items!: string[];
   @Prop({ required: true, default: "" }) value!: string;
 
+  //#endregion
+
+  //#region data
+
   optionsMenu = false;
+
+  //#endregion
+
+  //#region methods
 
   showOptions(): void {
     this.optionsMenu = !this.optionsMenu;
@@ -52,6 +63,8 @@ export default class SelectTree extends Vue {
   selectItem(selectedItem: string): void {
     this.$emit("input", selectedItem);
   }
+
+  //#endregion
 }
 </script>
 
