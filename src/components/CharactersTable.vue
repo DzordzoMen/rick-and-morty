@@ -126,79 +126,90 @@ export default class CharactersTable extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 table {
   width: 100%;
   font-size: 16px;
-  color: var(--secondary-color);
+  color: $secondary;
   border-collapse: collapse;
-}
-table thead {
-  background: rgba(229, 234, 244, 0.25);
-}
-thead tr {
-  height: 54px;
-}
-thead tr th {
-  /* padding: 12px 0px; */
-  font-weight: 500;
-  line-height: 22px;
-  font-style: normal;
-  text-align: left;
-}
-tbody tr {
-  padding: 4px 0;
-  border-bottom: 1px solid hsla(220, 41%, 93%, 1);
-}
-tbody tr td {
-  font-weight: 400;
-  text-align: left;
-}
-.character-image {
-  width: 43px;
-  height: 68px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  margin: 4px auto 4px 0;
-}
-.character-image__dead {
-  mix-blend-mode: luminosity;
-}
-/* TODO Refactor? */
-.character-image > svg {
-  position: absolute;
-  top: -5%;
-  right: -30%;
-}
-table button {
-  padding: 10px;
-  display: grid;
-  place-items: center;
-  /* margin: auto; */
-  border-radius: 8px;
-  border: 2px solid var(--primary-color);
-  background: var(--background-color);
-  transition: all 0.23s ease-in-out;
-}
-button span {
-  color: var(--primary-color);
-  transition: all 0.23s ease-in-out;
-}
-button:hover {
-  cursor: pointer;
-}
-.gender-wrapper {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 4px;
-}
-.is-favorite {
-  background: var(--primary-color);
-}
-.is-favorite span {
-  color: var(--background-color);
+
+  thead {
+    background: rgba(229, 234, 244, 0.25);
+
+    tr {
+      height: 54px;
+      th {
+        font-weight: 500;
+        line-height: 22px;
+        font-style: normal;
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      padding: 4px 0;
+      border-bottom: 1px solid hsla(220, 41%, 93%, 1);
+    }
+
+    td {
+      font-weight: 400;
+      text-align: left;
+
+      .is-favorite {
+        background: $primary;
+        span {
+          color: $background;
+        }
+      }
+
+      .gender-wrapper {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+  }
+
+  button {
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    border: 2px solid $primary;
+    background: $background;
+    transition: all 0.23s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    span {
+      color: $primary;
+      transition: all 0.23s ease-in-out;
+    }
+  }
+
+  .character-image {
+    width: 43px;
+    height: 68px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin: 4px auto 4px 0;
+
+    &__dead {
+      mix-blend-mode: luminosity;
+    }
+
+    & > svg {
+      position: absolute;
+      top: -5%;
+      right: -30%;
+    }
+  }
 }
 </style>

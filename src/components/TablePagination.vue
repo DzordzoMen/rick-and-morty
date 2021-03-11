@@ -206,49 +206,54 @@ export default class TablePagination extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 .pagination {
   margin: 16px 0;
   height: 48px;
   display: flex;
   gap: 8px;
   flex-wrap: nowrap;
-}
-.pagination-item {
-  display: grid;
-  place-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  border-radius: 4px;
-  width: 48px;
-  height: 48px;
-  transition: all 0.23s ease-in-out;
-  cursor: pointer;
-}
-.pagination-item span {
-  color: var(--primary-color);
-}
-.pagination-item:not(.pagination-item__disabled):hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-/* TODO refactor */
-.pagination-item:not(.pagination-item__disabled):hover span {
-  color: var(--background-color);
-}
-.pagination-item__active {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-  cursor: default;
-}
-.pagination-item__disabled {
-  background-color: var(--background-color);
-  cursor: default;
-  color: var(--secondary-color);
-}
-.pagination-item__disabled span {
-  color: var(--secondary-color);
+
+  .pagination-item {
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: $secondary;
+    border: 1px solid $secondary;
+    border-radius: 4px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.23s ease-in-out;
+    cursor: pointer;
+
+    span {
+      color: $primary;
+    }
+
+    &__active {
+      background-color: $primary;
+      color: $background;
+      cursor: default;
+    }
+
+    &__disabled {
+      background-color: $background;
+      cursor: default;
+      color: $secondary;
+      span {
+        color: $secondary;
+      }
+    }
+
+    &:not(.pagination-item__disabled):hover {
+      background-color: $primary;
+      color: $background;
+
+      span {
+        color: $background;
+      }
+    }
+  }
 }
 </style>

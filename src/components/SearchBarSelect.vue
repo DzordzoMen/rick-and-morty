@@ -7,7 +7,7 @@
     </div>
     <slot name="icon">
       <material-design-icon
-        class="select_icon"
+        class="select__icon"
         :class="optionsMenu && 'select__icon-animation'"
       >
         arrow_left
@@ -55,7 +55,7 @@ export default class SearchBarSelect extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 .select {
   display: flex;
   height: 100%;
@@ -66,57 +66,66 @@ export default class SearchBarSelect extends Vue {
   position: relative;
   user-select: none;
   cursor: pointer;
-}
-.select__selected {
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 0;
-  justify-content: start;
-}
-.select_icon {
-  transition: all 0.23s ease-in-out;
-}
-.select__icon-animation {
-  transform: rotate(-90deg);
-}
-.options {
-  background-color: var(--background-color);
-  width: 100%;
-  box-sizing: content-box;
-  border: 1px solid var(--secondary-color);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  position: absolute;
-  top: 100%;
-  left: -1px;
-  right: -1px;
-  z-index: 5;
-}
-.options__item {
-  line-height: 24px;
-  text-align: start;
-  padding: 16px;
-}
-.options__item-selected {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-.options__item:hover {
-  cursor: pointer;
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
 
-.options .options__item:nth-child(n) {
-  border-bottom: 1px solid var(--secondary-color);
-}
-.options .options__item:last-child {
-  border: none;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-.options .options__item:last-child:hover {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  &__selected {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: start;
+  }
+
+  &__icon {
+    transition: all 0.23s ease-in-out;
+
+    &-animation {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .options {
+    background-color: $background;
+    width: 100%;
+    box-sizing: content-box;
+    border: 1px solid $secondary;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    z-index: 5;
+
+    &__item {
+      line-height: 24px;
+      text-align: start;
+      padding: 16px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primary;
+        color: $background;
+      }
+
+      &:nth-child(n) {
+        border-bottom: 1px solid $secondary;
+      }
+
+      &:last-child {
+        border: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        &:hover {
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+
+      &-selected {
+        background-color: $primary;
+        color: $background;
+      }
+    }
+  }
 }
 </style>

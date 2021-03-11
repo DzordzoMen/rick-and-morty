@@ -32,5 +32,3 @@ export default class Favorites extends Vue {
   ];
 }
 </script>
-
-<style></style>

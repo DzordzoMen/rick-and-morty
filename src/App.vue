@@ -45,18 +45,15 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --primary-color: hsla(188, 84%, 43%, 1);
-  --secondary-color: hsla(216, 13%, 70%, 1);
-  --background-color: hsla(0, 0%, 100%, 1);
   font-family: Poppins, Arial, sans-serif;
 }
 html {
-  background: #fff;
+  background: $background;
 }
 button:focus,
 input:focus {
@@ -74,13 +71,15 @@ input:focus {
   padding: 24px 0;
   max-width: 1185px;
   margin: auto;
-}
-.navigation-button {
-  color: var(--primary-color);
-  font-weight: 500;
-  cursor: pointer;
-}
-.navigation-button__active {
-  border-bottom: 3px solid var(--primary-color);
+
+  .navigation-button {
+    color: $primary;
+    font-weight: 500;
+    cursor: pointer;
+
+    &__active {
+      border-bottom: 3px solid $primary;
+    }
+  }
 }
 </style>

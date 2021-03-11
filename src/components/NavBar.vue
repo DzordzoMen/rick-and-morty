@@ -62,7 +62,7 @@ export default class NavBar extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 /* TODO DEBUG */
 @media (min-width: 960px) {
   .logo {
@@ -88,50 +88,56 @@ nav {
   place-items: center;
   position: sticky;
   top: 0;
-  background-color: white;
-  border-bottom: 1px solid var(--secondary-color);
-}
-.logo {
-  width: 300px;
-}
-.search-bar {
-  height: 56px;
-  width: 505px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  border: 1px solid var(--secondary-color);
-  border-radius: 8px;
-}
-.search-bar__item {
-  border-right: 1px solid var(--secondary-color);
-  color: var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  line-height: 24px;
-  font-weight: 500;
-  gap: 4px;
-  align-items: center;
-  width: 25%;
-  height: 100%;
-}
-.search-bar__item:last-child {
-  width: 50%;
-  border-right: none;
-}
-.search-bar__item input {
-  border: none;
-  height: inherit;
-  width: 75%;
-  padding: 8px;
-}
-.search-bar__item button {
-  padding: 8px;
-  display: grid;
-  place-items: center;
-  color: var(--primary-color);
-  border: none;
-  background-color: inherit;
-  margin: auto;
+  background-color: $background;
+  border-bottom: 1px solid $secondary;
+
+  .logo {
+    width: 300px;
+  }
+
+  .search-bar {
+    height: 56px;
+    width: 505px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border: 1px solid $secondary;
+    border-radius: 8px;
+
+    &__item {
+      border-right: 1px solid $secondary;
+      color: $secondary;
+      display: flex;
+      justify-content: center;
+      line-height: 24px;
+      font-weight: 500;
+      gap: 4px;
+      align-items: center;
+      width: 25%;
+      height: 100%;
+
+      &:last-child {
+        width: 50%;
+        border-right: none;
+      }
+
+      input {
+        border: none;
+        height: inherit;
+        width: 75%;
+        padding: 8px;
+      }
+
+      button {
+        padding: 8px;
+        display: grid;
+        place-items: center;
+        color: $primary;
+        border: none;
+        background-color: inherit;
+        margin: auto;
+      }
+    }
+  }
 }
 </style>
