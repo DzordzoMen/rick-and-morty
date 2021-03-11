@@ -1,72 +1,89 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th :key="index" v-for="(headerName, index) in tableHeaders">
-          {{ headerName }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <template v-for="character in characters">
-        <tr :key="character.id">
-          <td>
-            <img :src="character.image" :alt="character.name" />
-          </td>
-          <td>{{ character.id }}</td>
-          <td>{{ character.name }}</td>
-          <td>
-            <div class="gender-wrapper">
-              <material-design-icon>
-                {{ setGenderIcon(character) }}
-              </material-design-icon>
-              {{ character.gender }}
-            </div>
-          </td>
-          <td>{{ character.species }}</td>
-          <td>{{ displayCharacterLastEpisode(character) }}</td>
-          <td>
-            <button
-              @click="addCharacterToFavorites(character)"
-              :class="
-                checkIfCharacterIsAlreadyFavorite(character) && 'is-favorite'
-              "
-            >
-              <material-design-icon>
-                grade
-              </material-design-icon>
-            </button>
-          </td>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            :key="index"
+            v-for="(headerName, index) in headers"
+            :style="{ width: `calc(100% / ${headers.length})` }"
+          >
+            {{ headerName }}
+          </th>
         </tr>
-      </template>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <template v-for="character in characters">
+          <tr :key="character.id">
+            <td>
+              <div
+                role="img"
+                :aria-label="character.name"
+                class="character-image"
+                :class="isDead(character) && 'character-image__dead'"
+                :style="{ backgroundImage: `url(${character.image})` }"
+              >
+                <ribbon v-if="isDead(character)" />
+              </div>
+            </td>
+            <td>{{ character.id }}</td>
+            <td>{{ character.name }}</td>
+            <td>
+              <div class="gender-wrapper">
+                <material-design-icon>
+                  {{ setGenderIcon(character) }}
+                </material-design-icon>
+                {{ character.gender }}
+              </div>
+            </td>
+            <td>{{ character.species }}</td>
+            <td>{{ displayCharacterLastEpisode(character) }}</td>
+            <td>
+              <button
+                @click="addCharacterToFavorites(character)"
+                :class="
+                  checkIfCharacterIsAlreadyFavorite(character) && 'is-favorite'
+                "
+              >
+                <material-design-icon>
+                  grade
+                </material-design-icon>
+              </button>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <table-pagination
+      v-if="pagedResult && pagedResult.pages > 1"
+      :pagedResult="pagedResult"
+      :currentPage="currentPage"
+      @pageChanged="updatePagination"
+    />
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Character, PagedResult, Gender, Episode } from "@/typescript";
+import { Character, PagedResult, Gender, Status, Episode } from "@/typescript";
 
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
+import TablePagination from "@/components/TablePagination.vue";
+import Ribbon from "@/components/icons/Ribbon.vue";
 
 @Component({
   components: {
-    MaterialDesignIcon
+    MaterialDesignIcon,
+    TablePagination,
+    Ribbon
   }
 })
 export default class CharactersTable extends Vue {
-  @Prop({ required: false }) characters!: Character[];
+  @Prop({ required: true }) characters!: Character[];
+  @Prop({ required: true }) headers!: string[];
   @Prop({ required: false }) pagedResult!: PagedResult;
-
-  tableHeaders: string[] = [
-    "Photo",
-    "Character ID",
-    "Name",
-    "Gender",
-    "Species",
-    "Last Episode",
-    "Add to Favorites"
-  ];
+  @Prop({ required: false }) currentPage!: number;
+  @Prop({ required: false }) updatePagination!: Function;
 
   setGenderIcon({ gender }: { gender: Gender }): string {
     switch (gender) {
@@ -102,25 +119,19 @@ export default class CharactersTable extends Vue {
       this.$store.dispatch("favorite/SET_FAVORITE", character);
     }
   }
+
+  isDead({ status }: Character): boolean {
+    return status === Status.Dead;
+  }
 }
 </script>
 
 <style>
-@media (min-width: 960px) {
-  table {
-    max-width: 900px;
-  }
-}
-@media (min-width: 1264px) {
-  table {
-    max-width: 1185px;
-  }
-}
 table {
   width: 100%;
-  margin: auto;
   font-size: 16px;
   color: var(--secondary-color);
+  border-collapse: collapse;
 }
 table thead {
   background: rgba(229, 234, 244, 0.25);
@@ -134,17 +145,32 @@ thead tr th {
   line-height: 22px;
   font-style: normal;
   text-align: left;
-  /* TODO CALCULATE BASED ON HEADERS LENGTH */
-  width: calc(100% / 7);
+}
+tbody tr {
+  padding: 4px 0;
+  border-bottom: 1px solid hsla(220, 41%, 93%, 1);
 }
 tbody tr td {
   font-weight: 400;
   text-align: left;
 }
-table img {
+.character-image {
   width: 43px;
   height: 68px;
-  /* mix-blend-mode: luminosity; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin: 4px auto 4px 0;
+}
+.character-image__dead {
+  mix-blend-mode: luminosity;
+}
+/* TODO Refactor? */
+.character-image > svg {
+  position: absolute;
+  top: -5%;
+  right: -30%;
 }
 table button {
   padding: 10px;
