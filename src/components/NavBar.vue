@@ -63,25 +63,48 @@ export default class NavBar extends Vue {
 </script>
 
 <style lang="scss">
-/* TODO DEBUG */
-@media (min-width: 960px) {
-  .logo {
-    max-width: 150px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 769px) {
+  nav {
+    height: 220px;
+    gap: 8px;
+    justify-content: center;
+
+    .logo {
+      max-width: 200px !important;
+    }
   }
 }
-@media (min-width: 1264px) {
-  .logo {
-    max-width: 300px;
+
+@media only screen and (min-device-width: 770px) and (max-device-width: 1024px) {
+  nav {
+    height: 134px;
+    gap: 24px;
+    justify-content: center;
+
+    .logo {
+      max-width: 200px !important;
+    }
+  }
+}
+@media screen and (min-device-width: 1200px) {
+  nav {
+    height: 134px;
+    gap: 64px;
+    justify-content: start;
+
+    .logo {
+      max-width: 300px !important;
+    }
   }
 }
 nav {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 64px;
+  flex-wrap: wrap;
   max-width: 1185px;
   margin: auto;
-  height: 134px;
+  min-height: 134px;
+  max-height: 220px;
   padding: 24px;
   font-size: 16px;
   z-index: 2;
@@ -92,7 +115,7 @@ nav {
   border-bottom: 1px solid $secondary;
 
   .logo {
-    width: 300px;
+    max-width: 300px;
   }
 
   .search-bar {
