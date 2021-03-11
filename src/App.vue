@@ -1,6 +1,30 @@
 <template>
   <div id="app">
     <nav-bar />
+    <div class="navigation-area">
+      <router-link to="/" custom v-slot="{ navigate }">
+        <span
+          @click="navigate"
+          @keypress.enter="navigate"
+          role="link"
+          class="navigation-button"
+          :class="routeIsActive('Home') && 'navigation-button__active'"
+        >
+          All Characters
+        </span>
+      </router-link>
+      <router-link to="/favorites" custom v-slot="{ navigate }">
+        <span
+          @click="navigate"
+          @keypress.enter="navigate"
+          role="link"
+          class="navigation-button"
+          :class="routeIsActive('Favorites') && 'navigation-button__active'"
+        >
+          Favorites
+        </span>
+      </router-link>
+    </div>
     <router-view />
   </div>
 </template>
@@ -14,7 +38,11 @@ import { Component, Vue } from "vue-property-decorator";
     NavBar
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  routeIsActive(routeName: string): boolean {
+    return this.$route.matched.some(({ name }) => name === routeName);
+  }
+}
 </script>
 
 <style>
@@ -22,27 +50,37 @@ export default class App extends Vue {}
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --primary-color: hsl(188, 84%, 43%);
-  --secondary-color: hsl(216, 13%, 70%);
-  --background-color: hsl(0, 0%, 100%);
+  --primary-color: hsla(188, 84%, 43%, 1);
+  --secondary-color: hsla(216, 13%, 70%, 1);
+  --background-color: hsla(0, 0%, 100%, 1);
   font-family: Poppins, Arial, sans-serif;
+}
+html {
+  background: #fff;
+}
+button:focus,
+input:focus {
+  outline: 0;
 }
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
+.navigation-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 48px;
+  padding: 24px 0;
+  max-width: 1185px;
+  margin: auto;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.navigation-button {
+  color: var(--primary-color);
+  font-weight: 500;
+  cursor: pointer;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.navigation-button__active {
+  border-bottom: 3px solid var(--primary-color);
 }
 </style>
