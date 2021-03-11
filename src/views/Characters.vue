@@ -16,7 +16,7 @@
 
 <script lang="ts">
 // utilities
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Character, PagedResult } from "@/typescript";
 // components
 import CharactersTable from "@/components/CharactersTable.vue";
@@ -127,6 +127,15 @@ export default class CharactersView extends Vue {
 
   get filterValue(): string {
     return this.$store.getters["FILTER_VALUE"];
+  }
+
+  //#endregion
+
+  //#region watch
+
+  @Watch("filterValue")
+  onPropertyChanged() {
+    this.currentPage = 1;
   }
 
   //#endregion
