@@ -64,15 +64,15 @@ import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
     MaterialDesignIcon
   }
 })
-export default class TablePagination extends Vue {
+export default class Pagination extends Vue {
   @Prop({ required: true }) pagedResult!: PagedResult;
   @Prop({ required: true }) currentPage!: number;
+  @Prop({ required: false, default: 3 }) pageRange!: number;
 
   //#region computed
 
   get pages() {
-    // eslint-disable-next-line
-    let pages = [];
+    const pages = [];
     const {
       rangeStart,
       rangeEnd
@@ -98,21 +98,29 @@ export default class TablePagination extends Vue {
     return pages;
   }
   get rangeStart() {
-    const { currentPage }: { currentPage: number } = this;
+    const {
+      currentPage,
+      pageRange
+    }: {
+      currentPage: number;
+      pageRange: number;
+    } = this;
 
-    const start = currentPage - 3;
+    const start = currentPage - pageRange;
     return start > 0 ? start : 1;
   }
 
   get rangeEnd() {
     const {
       currentPage,
-      totalPages
+      totalPages,
+      pageRange
     }: {
       currentPage: number;
       totalPages: number;
+      pageRange: number;
     } = this;
-    const end = currentPage + 3;
+    const end = currentPage + pageRange;
     return end < totalPages ? end : totalPages;
   }
 
