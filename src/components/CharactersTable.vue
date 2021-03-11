@@ -70,7 +70,7 @@ import { Character, PagedResult, Gender, Status, Episode } from "@/typescript";
 // components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
 import Pagination from "@/components/Pagination.vue";
-import Ribbon from "@/components/icons/Ribbon.vue";
+import Ribbon from "@/components/svgComponents/Ribbon.vue";
 
 @Component({
   components: {

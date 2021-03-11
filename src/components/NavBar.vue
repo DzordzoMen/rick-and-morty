@@ -29,7 +29,7 @@
 import { Component, Vue } from "vue-property-decorator";
 // components
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
-import Logo from "@/components/icons/Logo.vue";
+import Logo from "@/components/svgComponents/Logo.vue";
 import SelectTree from "@/components/SelectTree.vue";
 
 @Component({
