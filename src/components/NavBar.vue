@@ -1,10 +1,6 @@
 <template>
   <nav aria-label="Main">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
-      class="logo"
-      alt="Rick and morty logo"
-    />
+    <logo class="logo" role="img" aria-label="Rick and morty logo" />
     <div class="search-bar">
       <div class="search-bar__item">
         Search By
@@ -32,12 +28,14 @@
 import { Component, Vue } from "vue-property-decorator";
 
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
+import Logo from "@/components/icons/Logo.vue";
 import SelectTree from "@/components/SelectTree.vue";
 
 @Component({
   components: {
     MaterialDesignIcon,
-    SelectTree
+    SelectTree,
+    Logo
   }
 })
 export default class NavBar extends Vue {
