@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 const store: StoreOptions<RootState> = {
   state: {
-    version: "0.0.1"
+    version: "1.0.0"
   },
   modules: {
     favorite: favoriteCharacters,
