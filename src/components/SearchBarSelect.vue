@@ -56,6 +56,8 @@ export default class SearchBarSelect extends Vue {
 </script>
 
 <style lang="scss">
+@import "../styles/_mixins.scss";
+
 .select {
   display: flex;
   height: 100%;
@@ -72,6 +74,7 @@ export default class SearchBarSelect extends Vue {
     flex-grow: 1;
     flex-shrink: 0;
     justify-content: start;
+    @include textStyle(500, 24px);
   }
 
   &__icon {
@@ -96,7 +99,7 @@ export default class SearchBarSelect extends Vue {
     z-index: 5;
 
     &__item {
-      line-height: 24px;
+      @include textStyle(500, 24px);
       text-align: start;
       padding: 16px;
 

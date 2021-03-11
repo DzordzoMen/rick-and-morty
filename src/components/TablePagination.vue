@@ -207,6 +207,8 @@ export default class TablePagination extends Vue {
 </script>
 
 <style lang="scss">
+@import "../styles/_mixins.scss";
+
 .pagination {
   margin: 16px 0;
   height: 48px;
@@ -215,10 +217,9 @@ export default class TablePagination extends Vue {
   flex-wrap: nowrap;
 
   .pagination-item {
+    @include textStyle(500, 24px);
     display: grid;
     place-items: center;
-    font-size: 1rem;
-    font-weight: bold;
     color: $secondary;
     border: 1px solid $secondary;
     border-radius: 4px;

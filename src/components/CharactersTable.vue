@@ -127,6 +127,8 @@ export default class CharactersTable extends Vue {
 </script>
 
 <style lang="scss">
+@import "../styles/_mixins.scss";
+
 table {
   width: 100%;
   font-size: 16px;
@@ -139,10 +141,7 @@ table {
     tr {
       height: 54px;
       th {
-        font-weight: 500;
-        line-height: 22px;
-        font-style: normal;
-        text-align: left;
+        @include textStyle(500, 22px);
       }
     }
   }
@@ -154,7 +153,7 @@ table {
     }
 
     td {
-      font-weight: 400;
+      @include textStyle(400, 22px);
       text-align: left;
 
       .is-favorite {

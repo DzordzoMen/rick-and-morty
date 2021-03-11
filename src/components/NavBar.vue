@@ -62,7 +62,7 @@ export default class NavBar extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @media only screen and (min-device-width: 320px) and (max-device-width: 769px) {
   nav {
     height: 220px;
@@ -134,6 +134,7 @@ nav {
       justify-content: center;
       line-height: 24px;
       font-weight: 500;
+      cursor: default;
       gap: 4px;
       align-items: center;
       width: 25%;
@@ -156,6 +157,7 @@ nav {
         display: grid;
         place-items: center;
         color: $primary;
+        cursor: pointer;
         border: none;
         background-color: inherit;
         margin: auto;
