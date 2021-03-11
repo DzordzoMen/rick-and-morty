@@ -16,7 +16,7 @@ import CharactersTable from "@/components/CharactersTable.vue";
     CharactersTable
   }
 })
-export default class Favorites extends Vue {
+export default class FavoritesView extends Vue {
   get characters(): Character[] {
     return this.$store.getters["favorite/FAVORITE_CHARACTERS"];
   }

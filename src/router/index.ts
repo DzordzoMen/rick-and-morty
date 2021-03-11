@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import CharactersView from "../views/Characters.vue";
-import Favorites from "@/views/Favorites.vue";
+import FavoritesView from "@/views/Favorites.vue";
 
 Vue.use(VueRouter);
 
@@ -14,7 +14,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/favorites",
     name: "Favorites",
-    component: Favorites
+    component: FavoritesView
   }
 ];
 

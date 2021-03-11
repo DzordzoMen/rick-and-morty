@@ -39,7 +39,7 @@ import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
     MaterialDesignIcon
   }
 })
-export default class SearchBarSelect extends Vue {
+export default class SelectTree extends Vue {
   @Prop({ required: true, default: [] }) items!: string[];
   @Prop({ required: true, default: "" }) value!: string;
 

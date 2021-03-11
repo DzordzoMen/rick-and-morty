@@ -10,7 +10,7 @@
         Search By
       </div>
       <div class="search-bar__item">
-        <search-bar-select
+        <select-tree
           v-model="selected"
           :items="availableFilterOptions"
           :selected="selected"
@@ -32,12 +32,12 @@
 import { Component, Vue } from "vue-property-decorator";
 
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
-import SearchBarSelect from "@/components/SearchBarSelect.vue";
+import SelectTree from "@/components/SelectTree.vue";
 
 @Component({
   components: {
     MaterialDesignIcon,
-    SearchBarSelect
+    SelectTree
   }
 })
 export default class NavBar extends Vue {

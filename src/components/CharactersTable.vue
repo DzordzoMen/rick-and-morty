@@ -54,7 +54,7 @@
         </template>
       </tbody>
     </table>
-    <table-pagination
+    <pagination
       v-if="pagedResult && pagedResult.pages > 1"
       :pagedResult="pagedResult"
       :currentPage="currentPage"
@@ -68,13 +68,13 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Character, PagedResult, Gender, Status, Episode } from "@/typescript";
 
 import MaterialDesignIcon from "@/components/MaterialDesignIcon.vue";
-import TablePagination from "@/components/TablePagination.vue";
+import Pagination from "@/components/Pagination.vue";
 import Ribbon from "@/components/icons/Ribbon.vue";
 
 @Component({
   components: {
     MaterialDesignIcon,
-    TablePagination,
+    Pagination,
     Ribbon
   }
 })
