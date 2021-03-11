@@ -208,8 +208,7 @@ export default class TablePagination extends Vue {
 
 <style>
 .pagination {
-  width: 40%;
-  margin: 8px auto;
+  margin: 16px 0;
   height: 48px;
   display: flex;
   gap: 8px;

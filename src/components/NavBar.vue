@@ -84,6 +84,7 @@ nav {
   height: 134px;
   padding: 24px;
   font-size: 16px;
+  z-index: 2;
   place-items: center;
   position: sticky;
   top: 0;
