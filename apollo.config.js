@@ -2,7 +2,7 @@ module.exports = {
   client: {
     service: {
       name: "my-app",
-      url: "https://rickandmortyapi.com/graphql",
+      url: process.env.VUE_APP_API_PATH
     },
     includes: [
       "src/**/*.vue",
