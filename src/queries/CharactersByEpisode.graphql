@@ -1,10 +1,7 @@
 query CharactersByEpisode($page: Int! = 1, $filterValue: String) {
   episodes(page: $page, filter: { episode: $filterValue }) {
     info {
-      count
       pages
-      next
-      prev
     }
     results {
       characters {
@@ -17,9 +14,7 @@ query CharactersByEpisode($page: Int! = 1, $filterValue: String) {
         episode {
           id
           name
-          air_date
           episode
-          created
         }
       }
     }

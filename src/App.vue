@@ -8,7 +8,7 @@
           @keypress.enter="navigate"
           role="link"
           class="navigation-button"
-          :class="routeIsActive('Characters') && 'navigation-button__active'"
+          :class="isRouteActive('Characters') && 'navigation-button__active'"
         >
           All Characters
         </span>
@@ -19,7 +19,7 @@
           @keypress.enter="navigate"
           role="link"
           class="navigation-button"
-          :class="routeIsActive('Favorites') && 'navigation-button__active'"
+          :class="isRouteActive('Favorites') && 'navigation-button__active'"
         >
           Favorites
         </span>
@@ -43,7 +43,7 @@ import NavBar from "@/components/NavBar.vue";
 export default class App extends Vue {
   //#region methods
 
-  routeIsActive(routeName: string): boolean {
+  isRouteActive(routeName: string): boolean {
     return this.$route.matched.some(({ name }) => name === routeName);
   }
 
@@ -58,7 +58,7 @@ export default class App extends Vue {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins, Arial, sans-serif;
+  font-family: Poppins, sans-serif;
 }
 html {
   background: $background;

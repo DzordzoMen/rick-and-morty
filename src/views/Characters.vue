@@ -1,7 +1,7 @@
 <template>
   <container>
     <characters-table
-      :characters="charactersInfo || []"
+      :characters="charactersData || []"
       :headers="tableHeaders"
       :pagedResult="dataInfo || {}"
       :currentPage="currentPage"
@@ -59,7 +59,7 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
           count: 0,
           pages: 0
         };
-        this.charactersInfo = [];
+        this.charactersData = [];
       },
       result({ data, loading }) {
         const { filterType } = this;
@@ -69,23 +69,20 @@ import CharactersByEpisode from "@/queries/CharactersByEpisode.graphql";
 
           switch (filterType) {
             case "Name":
-              this.dataInfo = data.characters.info;
-              this.charactersInfo = data.characters.results;
+              this.setDataInfo(data.characters.info);
+              this.setCharactersData(data.characters.results);
               break;
             case "Identifier":
-              this.dataInfo = {
-                count: 0,
-                pages: 0
-              };
-              this.charactersInfo = [data.character];
+              this.setDataInfo({ pages: 0 });
+              this.setCharactersData([data.character]);
               break;
             case "Episode":
-              this.dataInfo = data.episodes.info;
-              this.charactersInfo = data.episodes.results[0].characters;
+              this.setDataInfo(data.episodes.info);
+              this.setCharactersData(data.episodes.results[0].characters);
               break;
             default:
-              this.dataInfo = data.characters.info;
-              this.charactersInfo = data.characters.results;
+              this.setDataInfo(data.characters.info);
+              this.setCharactersData(data.characters.results);
               break;
           }
         }
@@ -105,7 +102,7 @@ export default class CharactersView extends Vue {
     pages: 0
   };
 
-  charactersInfo: Character[] = [];
+  charactersData: Character[] = [];
 
   tableHeaders: string[] = [
     "Photo",
@@ -134,16 +131,26 @@ export default class CharactersView extends Vue {
   //#region watch
 
   @Watch("filterValue")
-  onPropertyChanged() {
-    this.currentPage = 1;
+  onPropertyChanged(): void {
+    this.updateCurrentPage(1);
   }
 
   //#endregion
 
   //#region methods
 
-  updateCurrentPage(newPage: number) {
+  updateCurrentPage(newPage: number): void {
     this.currentPage = newPage;
+  }
+
+  setDataInfo({ pages }: PagedResult): void {
+    this.dataInfo = {
+      pages
+    };
+  }
+
+  setCharactersData(characters: Character[]): void {
+    this.charactersData = characters;
   }
 
   //#endregion

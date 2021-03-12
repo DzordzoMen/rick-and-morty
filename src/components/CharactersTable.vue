@@ -31,19 +31,17 @@
             <td>
               <div class="gender-wrapper">
                 <material-design-icon>
-                  {{ setGenderIcon(character) }}
+                  {{ genderIcon(character) }}
                 </material-design-icon>
                 {{ character.gender }}
               </div>
             </td>
             <td>{{ character.species }}</td>
-            <td>{{ displayCharacterLastEpisode(character) }}</td>
+            <td>{{ lastEpisode(character) }}</td>
             <td>
               <button
-                @click="addCharacterToFavorites(character)"
-                :class="
-                  checkIfCharacterIsAlreadyFavorite(character) && 'is-favorite'
-                "
+                @click="addToFavoriteCharacters(character)"
+                :class="isFavorite(character) && 'is-favorite'"
               >
                 <material-design-icon>
                   grade
@@ -92,7 +90,7 @@ export default class CharactersTable extends Vue {
 
   //#region methods
 
-  setGenderIcon({ gender }: { gender: Gender }): string {
+  genderIcon({ gender }: Character): string {
     switch (gender) {
       case Gender.Female:
         return "female";
@@ -107,7 +105,7 @@ export default class CharactersTable extends Vue {
     }
   }
 
-  displayCharacterLastEpisode({ episode }: { episode: Episode[] }): string {
+  lastEpisode({ episode }: Character): string {
     const lastEpisode = episode?.reduce((acc: Episode, episode: Episode) => {
       if (Number(episode.id) > Number(acc?.id)) acc = episode;
       return acc;
@@ -115,12 +113,12 @@ export default class CharactersTable extends Vue {
     return lastEpisode?.episode;
   }
 
-  checkIfCharacterIsAlreadyFavorite(character: Character): boolean {
+  isFavorite(character: Character): boolean {
     return this.$store.getters["favorite/IS_FAVORITE"]({ character });
   }
 
-  addCharacterToFavorites(character: Character): void {
-    if (this.checkIfCharacterIsAlreadyFavorite(character)) {
+  addToFavoriteCharacters(character: Character): void {
+    if (this.isFavorite(character)) {
       this.$store.dispatch("favorite/REMOVE_FAVORITE", character);
     } else {
       this.$store.dispatch("favorite/SET_FAVORITE", character);

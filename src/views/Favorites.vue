@@ -1,6 +1,9 @@
 <template>
   <container>
-    <characters-table :characters="characters" :headers="tableHeaders" />
+    <characters-table
+      :characters="favoriteCharacters"
+      :headers="tableHeaders"
+    />
   </container>
 </template>
 
@@ -35,7 +38,7 @@ export default class FavoritesView extends Vue {
 
   //#region computed
 
-  get characters(): Character[] {
+  get favoriteCharacters(): Character[] {
     return this.$store.getters["favorite/FAVORITE_CHARACTERS"];
   }
 

@@ -76,7 +76,7 @@ export default class Pagination extends Vue {
 
   //#region computed
 
-  get pages() {
+  get pages(): number[] {
     const pages = [];
     const {
       rangeStart,
@@ -102,7 +102,7 @@ export default class Pagination extends Vue {
 
     return pages;
   }
-  get rangeStart() {
+  get rangeStart(): number {
     const {
       currentPage,
       pageRange
@@ -115,7 +115,7 @@ export default class Pagination extends Vue {
     return start > 0 ? start : 1;
   }
 
-  get rangeEnd() {
+  get rangeEnd(): number {
     const {
       currentPage,
       totalPages,

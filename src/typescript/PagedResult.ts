@@ -1,5 +1,5 @@
 export type PagedResult = {
-  count: number;
+  count?: number;
   pages: number;
   next?: number;
   prev?: number;

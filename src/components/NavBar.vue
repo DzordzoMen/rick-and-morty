@@ -13,7 +13,13 @@
         />
       </div>
       <div class="search-bar__item">
-        <input type="text" v-model="inputValue" @keyup.enter="search()" />
+        <input
+          type="text"
+          aria-label="search"
+          name="search"
+          v-model="inputValue"
+          @keyup.enter="search()"
+        />
         <button @click="search()">
           <material-design-icon>
             search

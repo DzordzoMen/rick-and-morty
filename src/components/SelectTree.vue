@@ -19,7 +19,7 @@
           :key="index"
           class="options__item"
           :class="item === value && 'options__item-selected'"
-          role="treeitem"
+          role="option"
           @click="selectItem(item)"
         >
           {{ item }}
