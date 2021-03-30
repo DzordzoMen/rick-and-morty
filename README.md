@@ -1,24 +1,34 @@
 # rick-and-morty
 
-## Project setup
-```
-npm install
-```
+## Screenshots
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Main page
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![Rick and morty favorites page](./screenshots/rick-and-morty-main-page.png)
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Favorites Page
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![Rick and morty favorites page](./screenshots/rick-and-morty-favorites-page.png)
+
+
+## Features
+- Browse characters of Rick & Morty
+- Store favorite characters locally on client side
+- Search by Name, Identifier or Episode
+
+## Used technologies
+- Vue 2
+- Vuex
+- TypeScript
+- GraphQL
+- Vue-apollo
+- Sass
+
+## Usage
+### 1. Project setup -  `npm install`
+### 2. Run the project - `npm run serve`
+### 3. Open the project - http://localhost:8080/
+
+## Online version
+
+It is also available on [Netlify](mr-rick-and-morty.netlify.app/)
