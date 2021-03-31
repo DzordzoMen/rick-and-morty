@@ -31,4 +31,4 @@
 
 ## Online version
 
-It is also available on [Netlify](mr-rick-and-morty.netlify.app/)
+It is also available on [Netlify](https://mr-rick-and-morty.netlify.app/)
